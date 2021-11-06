@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>
+            tasks
+        </title>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    </head>
+        <body style = "background-color:antiquewhite;">
+            <div class= "ui container">
+                <div class = 'ui segment' style= 'margin-top:2em'>
+                    <div class="ui form">
+                      <form action="/new/" method="post">
+                        <div class="fields">
+                          <div class="ten wide field">
+                           
+
+                            
+                            
+                        <input type="text" name= "title" id="title" placeholder="title">
+                          
+                          </div>
+                          <div class="four wide field">
+                            
+                            <input type="text" name= "priority" id="priority" placeholder="priority" >
+                          </div>
+                          <div class="two wide field"> 
+                          <button class=" ui fluid orange icon disabled button" id="plus" type="submit" > 
+                          
+                            <i class="icon plus"></i>
+                          </button>
+
+                          </div>
+                        </div>
+                      </form>
+                      </div>
+                      <div class="ui divider"></div>
+                      <table class="ui very basic table" style="text-align: right";>
+                        <thead>
+                          <tr>
+                            <th>title</th>
+                            <th>priority</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for task in data.tasks %}
+                          <tr>
+                            <td>{{ task.title }}</td>
+                            <td>{{ task.priority }} </td>
+                            <td style= "text-align: left";>
+                            
+
+                             <a  class="circular ui  orange icon button" href="/rm/{{task.id}}/">
+                                  <i class="icon trash"></i>
+                                </a>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                          
+                        </tbody>
+                      </table>
+
+                      
+                
+            
+        </div>
+       
+    </div>
+        
+</body>
+<script>
+  function f() {
+    if (($("#title").val() == "") | ($("#priority").val() == "")) {
+      $("#plus").addClass("disabled");
+
+
+    } else{
+      $("#plus").removeClass("disabled");
+    }
+
+}
+$("#title").on("keydown", f);
+$("#priority").on("keydown", f);
+
+</script>
+   
+</html>
